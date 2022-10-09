@@ -32,7 +32,6 @@
         if (this.finished === true) {
           this.playSound('http://soundbible.com/mp3/Air Plane Ding-SoundBible.com-496729130.mp3')
         }
-
       }
     },
     methods: {
@@ -121,7 +120,7 @@
   text-transform: uppercase;
   z-index: 2;
   &:hover {
-    color: #F87070;
+    color: var(--hover-color);
     transition: .3s;
   }
 }
@@ -137,7 +136,7 @@
   circle {
     fill: none;
     stroke-width: 8;
-    stroke: #F87070;
+    stroke: var(--color);
     stroke-dasharray: 843;
     transition: .75s;
   }

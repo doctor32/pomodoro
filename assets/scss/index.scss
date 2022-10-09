@@ -8,7 +8,30 @@ body {
   font-weight: bold;
 }
 
+.default {
+  --color: #F87070;
+  --hover-color: #F68D8D;
+}
+.default.blue {
+  --color: #70F3F8;
+  --hover-color: #9AEEF1;
+}
+.default.violet {
+  --color: #D881F8;
+  --hover-color: #D89CEE;
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
+}
+.settings__container {
+  padding: 0 40px;
+}
+.settings__hr {
+  width: 100%;
+  height: 1px;
+  background: black;
+  opacity: .1;
+  margin: 25px 0;
 }

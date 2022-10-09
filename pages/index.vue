@@ -1,6 +1,8 @@
 <template>
   <div class="pomodoro__body">
-     <h1 class="pomodoro__title">pomodoro</h1>
+     <h1 class="pomodoro__title"
+     @click="pashalka"
+     >{{baby}}</h1>
      <nav>
       <ul class="pomodoro__nav_items">
         <li
@@ -40,12 +42,17 @@
       <p>short break: {{groupTime(1)}} min</p>
       <p>long break: {{groupTime(2)}} min</p>
      </div>
-     <template>
-      <Settings v-if="isOpenSettings"
+      <Settings
+        v-show="isOpenSettings"
         @confirmSettings="confirmSettings($event)"
         @close="closeSettings"
       />
-     </template>
+
+     <div class="to-do-item">
+      <createToDoTask />
+     </div>
+
+
 
   </div>
 </template>
@@ -53,12 +60,14 @@
 <script>
 import Timer from "../components/timer.vue";
 import Settings from "../components/settings.vue";
+import CreateToDoTask from '../components/createToDoTask.vue';
 export default {
     name: "IndexPage",
     layout: "default",
     data() {
         return {
             nav: ["pomodoro", "short break", "long break"],
+            baby: 'pomodoro',
             activeNav: 0,
             isOpenSettings: false,
             finished: false,
@@ -101,6 +110,9 @@ export default {
       })
     },
     methods: {
+      pashalka() {
+        this.baby = 'baby is the best'
+      },
       changePomodoro(index) {
         this.activeNav = index;
       },
@@ -155,7 +167,7 @@ export default {
           return Math.floor(this.timers[index].total / 60)
       }
     },
-    components: { Timer, Settings }
+    components: { Timer, Settings, CreateToDoTask }
 }
 </script>
 
@@ -166,6 +178,12 @@ export default {
     align-items: center;
     justify-content: center;
     margin-top: 15px;
+    position: relative;
+    .to-do-item {
+      position: absolute;
+      top: 104px;
+      left: 0;
+    }
   }
   .pomodoro__title {
     font-size: 32px;
@@ -179,17 +197,20 @@ export default {
     border-radius: 31.5px;
     display: flex;
     justify-content: center;
-    width: 390px;
+    width: 420px;
     padding: 7px;
     gap: 3px;
   }
   .pomodoro__nav_item {
     cursor: pointer;
+    width: 100%;
     border-radius: 26.5px;
-    padding: 16px 25px;
+    padding: 16px 0;
+    display: flex;
+    justify-content: center;
     &.active {
       transition: .3s;
-      background: #F87070;
+      background: var(--color);
       .pomodoro__nav_item-title {
         color: black;
       }
@@ -206,7 +227,7 @@ export default {
       transform: rotate(360deg);
       transition: .5s;
       path {
-        fill: #F87070;
+        fill: var(--color);
       }
     }
   }
