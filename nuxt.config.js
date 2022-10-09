@@ -1,5 +1,3 @@
-import i18n from './localization/i18n.js'
-
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -47,9 +45,7 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/style-resources',
-    'nuxt-i18n'
   ],
-  i18n: i18n,
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
