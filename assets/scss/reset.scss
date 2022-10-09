@@ -365,10 +365,15 @@ textarea {
     padding: 0.2em 0;
 }
 
-div {
+div, textarea {
   box-sizing: border-box;
 }
-
-button {
+textarea {
+  resize: none;
+}
+button, input, textarea {
   border: 0;
+}
+input, button {
+  font-family: inherit;
 }
