@@ -41,6 +41,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+
   }
   .settings {
     position: relative;
@@ -52,6 +53,9 @@ export default {
     h2 {
       font-size: 28px;
       line-height: 35px;
+    }
+    @media ( max-width: 620px ) {
+      width: 340px;
     }
   }
   .settings__top {

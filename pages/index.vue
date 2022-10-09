@@ -76,7 +76,7 @@ export default {
                 name: 'pomodoro',
                 paused: false,
                 leftTime: 0,
-                minutesTime: 30,
+                minutesTime: 0.1,
                 started: false,
                 finished: false,
                 total: 0
@@ -178,11 +178,28 @@ export default {
     align-items: center;
     justify-content: center;
     margin-top: 15px;
-    position: relative;
-    .to-do-item {
-      position: absolute;
-      top: 104px;
+  }
+  .to-do-item {
+    width: 330px;
+    height: 550px;
+    position: absolute;
+    left: 0;
+    top: 100px;
+    width: 500px;
+    height: 500px;
+    @media ( max-width: 1440px ) {
+      width: 100%;
+      top: 700px;
       left: 0;
+      right: 0;
+      margin: 0 auto;
+    }
+    @media ( max-width: 480px ) {
+      width: 100%;
+      top: 770px;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
     }
   }
   .pomodoro__title {
@@ -200,6 +217,11 @@ export default {
     width: 420px;
     padding: 7px;
     gap: 3px;
+    @media ( max-width: 480px ) {
+      flex-direction: column;
+      width: 200px;
+      margin: 35px 0 35px 0;
+    }
   }
   .pomodoro__nav_item {
     cursor: pointer;
@@ -239,5 +261,11 @@ export default {
     display: flex;
     flex-direction: column;
     gap: 5px;
+    @media ( max-width: 1440px ) {
+      top: 20px;
+    }
+    @media ( max-width: 1070px ) {
+      display: none;
+    }
   }
 </style>

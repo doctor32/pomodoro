@@ -147,11 +147,18 @@ import Modal from './modal.vue'
     line-height: 16px;
     letter-spacing: 5px;
     text-transform: uppercase;
+    @media ( max-width: 620px ) {
+      text-align: center;
+    }
   }
   .settings__minutes_inputs {
     margin-top: 25px;
     display: flex;
     justify-content: space-between;
+    @media ( max-width: 620px ) {
+      flex-direction: column;
+      align-items: center;
+    }
   }
   .settings__minutes_input-title {
     font-size: 12px;
@@ -159,6 +166,10 @@ import Modal from './modal.vue'
     mix-blend-mode: normal;
     opacity: 0.4;
     padding-bottom: 8px;
+    @media ( max-width: 620px ) {
+      padding: 8px 0;
+      text-align: center;
+    }
   }
   .settings__minutes_input {
     background: #EFF1FA;

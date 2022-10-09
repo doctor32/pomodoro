@@ -114,6 +114,24 @@ import Modal from './modal.vue';
   color: #D7E0FF;
   box-shadow: 7px 6px 50px rgba(248, 112, 112, 0.02);
   border-radius: 0 25px 25px 0;
+  position: relative;
+  @media ( max-width: 1440px ) {
+    width: 700px;
+    margin: 0 auto;
+    height: 400px;
+    border-radius: 25px;
+  }
+  @media ( max-width: 760px ) {
+    width: 480px;
+    height: 450px;
+  }
+  @media ( max-width: 520px ) {
+    width: 380px;
+  }
+  @media ( max-width: 420px ) {
+    width: 360px;
+    height: 650px;
+  }
 }
 .to-do__title {
   font-size: 20px;
@@ -129,6 +147,16 @@ import Modal from './modal.vue';
   display: flex;
   flex-direction: column;
   gap: 15px;
+  @media ( max-width: 1440px ) {
+    height: 230px;
+  }
+  @media ( max-width: 760px ) {
+    height: 280px;
+  }
+  @media ( max-width: 420px ) {
+    height: 490px;
+  }
+
   &::-webkit-scrollbar {
     width: 4px;
   }
@@ -183,6 +211,12 @@ import Modal from './modal.vue';
   &.active {
     opacity: .1;
     cursor: auto;
+  }
+  @media ( max-width: 1440px ) {
+    width: 90%;
+  }
+  @media ( max-width: 520px ) {
+    width: 80%;
   }
 }
 .to-do__item_delete {
