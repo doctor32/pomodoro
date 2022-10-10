@@ -80,7 +80,7 @@ import Modal from './modal.vue'
             colors: [
               {
                 color: "#F87070",
-                theme: ''
+                theme: 'default-theme'
               },
               {
                 color: "#70F3F8",
@@ -95,7 +95,7 @@ import Modal from './modal.vue'
             fontActive: 0,
             fonts: ["Kumbh Sans, sans-serif", "Roboto Slab, serif", "Space Mono, monospace"],
             font: "Kumbh Sans, sans-serif",
-            theme: ''
+            theme: 'default-theme'
         }
     },
     methods: {

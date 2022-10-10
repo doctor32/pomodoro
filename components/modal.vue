@@ -17,14 +17,20 @@
       <div class="settings__bottom settings__container">
         <slot></slot>
       </div>
-      <button class="settings__btn" @click="$emit('confirm')">Apply</button>
+      <button class="settings__btn" @click="$emit('confirm')">{{btnText}}</button>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['title']
+  props: {
+    title: String,
+    btnText: {
+      type: String,
+      default: 'Apply'
+    }
+  }
 }
 
 </script>

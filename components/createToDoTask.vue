@@ -8,29 +8,29 @@
     delete all
   </p>
   <p class="to-do__clear" v-if="toDoList.length == 0">it is a note box. make your first one!</p>
-  <div class="to-do__items" v-else>
+    <draggable @start="drag=true" @end="drag=false" class="to-do__items" v-else>
+      <div class="to-do__item"
+        v-for="item, i in toDoList"
+        :key="i"
+        :class="item.finished ? 'active' : ''"
+        draggable="true"
 
-    <div class="to-do__item"
-      v-for="item, i in toDoList"
-      :key="i"
-      :class="item.finished ? 'active' : ''"
-      draggable="true"
-      >
-      <div class="to-do__item_mark"
-        @click="mark(item)"
-      >
-        <svg width="10" height="10" viewBox="0 0 8 7" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M6.67074 0L2.702 4.49999L1.54979 3.60019H0.909668L2.702 6.6L7.31086 0H6.67074Z" fill="black"/>
-        </svg>
+        >
+        <div class="to-do__item_mark"
+          @click="mark(item)"
+        >
+          <svg width="10" height="10" viewBox="0 0 8 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6.67074 0L2.702 4.49999L1.54979 3.60019H0.909668L2.702 6.6L7.31086 0H6.67074Z" fill="black"/>
+          </svg>
+        </div>
+        <div class="to-do__item_text" :class="item.finished ? 'active' : ''">{{item.text.toLowerCase()}}</div>
+        <div class="to-do__item_delete" @click="deleteItem(i)">
+          <svg width="17" height="17" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5.27344 2.69531H5.15625C5.2207 2.69531 5.27344 2.64258 5.27344 2.57812V2.69531H9.72656V2.57812C9.72656 2.64258 9.7793 2.69531 9.84375 2.69531H9.72656V3.75H10.7812V2.57812C10.7812 2.06104 10.3608 1.64062 9.84375 1.64062H5.15625C4.63916 1.64062 4.21875 2.06104 4.21875 2.57812V3.75H5.27344V2.69531ZM12.6562 3.75H2.34375C2.08447 3.75 1.875 3.95947 1.875 4.21875V4.6875C1.875 4.75195 1.92773 4.80469 1.99219 4.80469H2.87695L3.23877 12.4658C3.26221 12.9653 3.67529 13.3594 4.1748 13.3594H10.8252C11.3262 13.3594 11.7378 12.9668 11.7612 12.4658L12.123 4.80469H13.0078C13.0723 4.80469 13.125 4.75195 13.125 4.6875V4.21875C13.125 3.95947 12.9155 3.75 12.6562 3.75ZM10.7124 12.3047H4.2876L3.93311 4.80469H11.0669L10.7124 12.3047Z" fill="#F87070"/>
+          </svg>
+        </div>
       </div>
-      <div class="to-do__item_text" :class="item.finished ? 'active' : ''">{{item.text.toLowerCase()}}</div>
-      <div class="to-do__item_delete" @click="deleteItem(i)">
-        <svg width="17" height="17" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M5.27344 2.69531H5.15625C5.2207 2.69531 5.27344 2.64258 5.27344 2.57812V2.69531H9.72656V2.57812C9.72656 2.64258 9.7793 2.69531 9.84375 2.69531H9.72656V3.75H10.7812V2.57812C10.7812 2.06104 10.3608 1.64062 9.84375 1.64062H5.15625C4.63916 1.64062 4.21875 2.06104 4.21875 2.57812V3.75H5.27344V2.69531ZM12.6562 3.75H2.34375C2.08447 3.75 1.875 3.95947 1.875 4.21875V4.6875C1.875 4.75195 1.92773 4.80469 1.99219 4.80469H2.87695L3.23877 12.4658C3.26221 12.9653 3.67529 13.3594 4.1748 13.3594H10.8252C11.3262 13.3594 11.7378 12.9668 11.7612 12.4658L12.123 4.80469H13.0078C13.0723 4.80469 13.125 4.75195 13.125 4.6875V4.21875C13.125 3.95947 12.9155 3.75 12.6562 3.75ZM10.7124 12.3047H4.2876L3.93311 4.80469H11.0669L10.7124 12.3047Z" fill="#F87070"/>
-        </svg>
-      </div>
-    </div>
-  </div>
+    </draggable>
   <button class="to-do__btn"
     @click="isCreatingNewTask = true"
   >
@@ -51,34 +51,35 @@
 </template>
 
 <script>
+import draggable from 'vuedraggable'
 import Modal from './modal.vue';
   export default {
-    components: { Modal },
+    components: { Modal, draggable },
     data() {
       return {
         newTask: '',
         isCreatingNewTask: false,
         toDoList: [
-          {
-            text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, earum laborum nostrum tempora iure nobis? Tenetur ab magni in nihil consequuntur perspiciatis eum officia asperiores ',
-            finished: true
-          },
-          {
-            text: 'Lorem ipsum dolor sit amet  ',
-            finished: false
-          },
-          {
-            text: 'Lorem ipsum dolor sit amet consectetur 201 Lorem ipsum dolor sit amet consectetur',
-            finished: false
-          },
-          {
-            text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, earum laborum nostrum tempora iure nobis? Tenetur ab magni in nihil consequuntur perspiciatis eum officia asperiores ',
-            finished: true
-          },
-          {
-            text: 'Lorem ipsum dolor sit amet  ',
-            finished: false
-          }
+          // {
+          //   text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, earum laborum nostrum tempora iure nobis? Tenetur ab magni in nihil consequuntur perspiciatis eum officia asperiores ',
+          //   finished: true
+          // },
+          // {
+          //   text: 'Lorem ipsum dolor sit amet  ',
+          //   finished: false
+          // },
+          // {
+          //   text: 'Lorem ipsum dolor sit amet consectetur 201 Lorem ipsum dolor sit amet consectetur',
+          //   finished: false
+          // },
+          // {
+          //   text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, earum laborum nostrum tempora iure nobis? Tenetur ab magni in nihil consequuntur perspiciatis eum officia asperiores ',
+          //   finished: true
+          // },
+          // {
+          //   text: 'Lorem ipsum dolor sit amet  ',
+          //   finished: false
+          // }
         ],
         color: 'red'
       }
@@ -106,6 +107,10 @@ import Modal from './modal.vue';
 </script>
 
 <style lang="scss" scoped>
+.sortable-chosen {
+  transition: .5;
+  background: #101223;
+}
 .to-do__body {
   width: 330px;
   background: #161932;
@@ -146,7 +151,6 @@ import Modal from './modal.vue';
   margin-bottom: 30px;
   display: flex;
   flex-direction: column;
-  gap: 15px;
   @media ( max-width: 1440px ) {
     height: 230px;
   }
@@ -177,9 +181,11 @@ import Modal from './modal.vue';
   }
 }
 .to-do__item {
+  padding: 10px 5px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  cursor: all-scroll;
   &.active {
     .to-do__item_mark {
       background: var(--color);
@@ -199,7 +205,6 @@ import Modal from './modal.vue';
 
 }
 .to-do__item_text {
-  cursor: pointer;
   font-size: 16px;
   line-height: 20px;
   color: #D7E0FF;
@@ -210,7 +215,6 @@ import Modal from './modal.vue';
   }
   &.active {
     opacity: .1;
-    cursor: auto;
   }
   @media ( max-width: 1440px ) {
     width: 90%;

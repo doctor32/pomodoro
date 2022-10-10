@@ -1,8 +1,7 @@
 <template>
   <div class="pomodoro__body">
      <h1 class="pomodoro__title"
-     @click="pashalka"
-     >{{baby}}</h1>
+     >pomodoro</h1>
      <nav>
       <ul class="pomodoro__nav_items">
         <li
@@ -48,11 +47,11 @@
         @close="closeSettings"
       />
 
-     <div class="to-do-item">
-      <createToDoTask />
-     </div>
+      <div class="to-do-item">
+        <createToDoTask />
+      </div>
 
-
+      <Helper v-if="$store.state.showFAQ"/>
 
   </div>
 </template>
@@ -67,7 +66,6 @@ export default {
     data() {
         return {
             nav: ["pomodoro", "short break", "long break"],
-            baby: 'pomodoro',
             activeNav: 0,
             isOpenSettings: false,
             finished: false,
@@ -105,14 +103,17 @@ export default {
     computed: {
     },
     mounted() {
+      if ( process.browser ) {
+        if (!localStorage.getItem('isFaqRead')) {
+        this.$store.commit('changeFaqStatus', true)
+      }
+      }
+
       this.timers.forEach(elem => {
         elem.leftTime = elem.minutesTime * 60
       })
     },
     methods: {
-      pashalka() {
-        this.baby = 'baby is the best'
-      },
       changePomodoro(index) {
         this.activeNav = index;
       },
